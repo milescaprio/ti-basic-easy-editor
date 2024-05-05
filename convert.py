@@ -2,11 +2,11 @@
 # Substitutes the hard characters, see help below.
 #V2.1.0
 
-
 #Future features:
 #-Better Menu macros, allowing custom label and routines
 
 import subprocess
+Debug = True
 
 def main():
     f=""
@@ -19,20 +19,28 @@ def main():
             print("Use improved shorthands for the clunky language!")
             print("Bind variable names at the top of your program: &bee&B    and then call with underscores bee_*2->bee_")
             print("Similar with labels: at the top of your program: |home|H   and no underscore     Goto home")
+            print("Labels that contain the name of other binds in them should come before those, so they aren't replaced")
             print("Make comments with /* */ or // : all text in between pairs will be ignored")
             print("Bind all at the top of the program, variables before labels")
+            print("If one bind variable name is a substring of another, put the substring one afterwards -- ")
+            print("Otherwise, it will replace in the partial variable name.")
             print("Use your own editor like VSCODE to have personal version control for your program.")
+            print("However, most syntax errors are NOT caught.")
             print("Substitutions:")
+            print("UNARY NEGATIVE: -_, DO NOT CONFUSE WITH BINARY NEGATIVE")
+            print("pi: _pi_")
             print("List operator character: instead of the little L, l_")
             print("For the default lists, use L_")
             print("Sto operator character: instead of the arrow, ->")
             print("Theta character: _theta_")
+            print("Magnitude character E: _E_")
             print("Replace math comparison operators with traditional code ones: <, >, <=, >=, =, !=")
             print("Newlines delimit statements as normal")
             print("If need to continue a line, use a semicolon (sorry!)") 
-            print("Spaces after commas are ignored")
+            print("Spaces are allowed before and after , + - / * ^ = < > <= >= != ( ) but thats all supported for now, and not before left parentheses.")
             print("Replace all \"End\" with right curly bracket and Then with left bracket, but don't put a left bracket on a For loop.")
             print("Cosmetic brackets for for loops or Lbls can be done with {.  and }.   but indentation is recommended instead ")
+            print("However, substitute normal brackets of lists with {{ and }}") #Todo make this better
             print("Y1 etc vars: Y_n for n the number")
             print("All other syntax must align with ti-basic, including extraneous spaces after lone keywords.")
 
@@ -51,18 +59,19 @@ def main():
 def convert(f):
     #Start Conversion
     original_program = ""
-
     #Open .8xpe
     with open(f + ".8xpe",mode='r',encoding="utf-8") as file:
         original_program = file.read()
 
     #Substitutions, will add to then substitute
-    replacement_list = [\
+    replacement_list_before = [\
+    ("Pause", "Pause "),\
     ("{.",""),\
     ("}.",""),\
     ("{", "\nThen"),\
-    ("}", "\nEnd"),\
-    (";\n",""),\
+    ("}", "End"),\
+    ("[","{"),\
+    ("]","}"),\
     ("->", "→"),\
     ("_theta_", "θ"),\
     ("Y_0", "Y₀"),\
@@ -81,10 +90,13 @@ def convert(f):
     ("L_4", "L₄"),\
     ("L_5", "L₅"),\
     ("L_6", "L₆"),\
-    ("l_", "⌊"),\
+    ("_E_", ""),\
     (">=", "≥"),\
     ("<=", "≤"),\
     ("!=", "≠"),\
+    ("_pi_", "π"),\
+    #("_-", "­"),\ #DEPRECATED!
+    ("-_", "­"),\
     ]
 
 
@@ -94,8 +106,36 @@ def convert(f):
     (" \n", "\n"),\
     (", ", ","),\
     (" ,", ","),\
-    ("-> ", "->"),\
-    (" ->", "->"),\
+    ("→ ", "→"),\
+    (" →", "→"),\
+    ("≥ ", "≥"),\
+    (" ≥", "≥"),\
+    ("≤ ", "≤"),\
+    (" ≤", "≤"),\
+    ("≠ ", "≠"),\
+    (" ≠", "≠"),\
+    ("= ", "="),\
+    (" =", "="),\
+    ("+ ", "+"),\
+    (" +", "+"),\
+    ("- ", "-"),\
+    (" -", "-"),\
+    ("* ", "*"),\
+    (" *", "*"),\
+    ("/ ", "/"),\
+    (" /", "/"),\
+    ("^ ", "^"),\
+    (" ^", "^"),\
+    ("( ", "("),\
+    (" )", ")"),\
+    (" (", "("),\
+    (") ", ")"),\
+    ]
+
+    replacement_list_after = [\
+    (";\n",""),\
+    ("Pause", "Pause "),\
+    ("l_", "⌊"),\
     ]
 
     #Comments /* */
@@ -136,26 +176,33 @@ def convert(f):
         if split_by_amper[0].strip() != "":
             print("Syntax Error: Extra code before & binds")
 
-        for i in range(1,len(split_by_amper)):
+        for i in range(1,len(split_by_amper)-1):
+            #n is the calculator variable name that the alias changes to
+            #replacing wil be the alias
+            #this loop iterates through each pair and add them to a translation index
             n = split_by_amper[i].strip()
 
             if i % 2 == 1: #Bind varible name
-                replacing = n;
+                replacing = n
                 if not n.isalnum():
                     print("Syntax Error: Variable bind name illegal")
                     exit()
 
             else: #Bind variable letter
-                if len(n) != 1 and i != section_count-1:
+                if (len(n) != 1 and len(n) != 4) and i != section_count-1:
                     print(n)
                     print("Syntax Error: Extra code in between binds")
                     exit()
-                if not n[0].isalpha() or not n[0].isupper():
-                    print("Syntax Error: & bind not followed by legal variable")
-                    exit()
 
-                replacement_list.append((replacing+"_",n[0]))
-    original_program = split_by_amper[-1][1:].strip()
+                # if len(n) == not n[0].isalpha() or not n[0].isupper():
+                #     print("Syntax Error: & bind not followed by legal variable")
+                #     exit()
+
+                replacement_list_before.append((replacing+"_",n))
+
+        #Remove all ampersand headers from original program, starting at first newline
+        start = split_by_amper[-1].find("\n")
+        original_program = split_by_amper[-1][start:]
 
 
     #Bind labels
@@ -185,21 +232,25 @@ def convert(f):
                     print("Syntax Error: Extra code in between binds")
                     exit()
 
+                n=n+" "
                 invalid_first_letter = not n[0].isalpha() or not n[0].isupper()
                 invalid_second_letter_exist = not (n[1].isalnum() or n[1].strip() == "")
-                invalid_second_letter_case = (n[1].isalpha() and not n[1].isupper())
+                invalid_second_letter_case = n[1].isalpha() and not n[1].isupper()
 
                 if invalid_first_letter or invalid_second_letter_exist or invalid_second_letter_case:
                     print("Syntax Error: | bind not followed by legal label")
                     exit()
 
-                replacement_list.append(("Goto "+replacing,"Goto "+n[0:2]))
-                replacement_list.append(("Lbl "+replacing,"Lbl "+n[0:2]))
-                replacement_list.append((","+replacing,","+n[0:2]))
-    original_program = split_by_vert[-1][2:].strip()
+                replacement_list_after.append(("Goto "+replacing,"Goto "+n[0:2].strip()))
+                replacement_list_after.append(("Lbl "+replacing,"Lbl "+n[0:2].strip()))
+                replacement_list_after.append((","+replacing,","+n[0:2].strip()))
+        original_program = split_by_vert[-1][2:].strip()
         
+    if Debug:
+        print(replacement_list_before, replacement_list_after)
+
     #Replace
-    for i in replacement_list:
+    for i in replacement_list_before:
         original_program = original_program.replace(i[0],i[1])
 
     for i in exhaustive_replacement_list:
@@ -208,13 +259,18 @@ def convert(f):
             copy = original_program
             original_program = original_program.replace(i[0],i[1])
 
+    for i in replacement_list_after:
+        original_program = original_program.replace(i[0],i[1])
+
     #Write
     with open(f+".8xpt.temp",mode='w', encoding = 'utf-8') as file:
         file.write(original_program)
 
     #Create new file for copying (or outputting if using converter script)
-    with open(f+".8xp",mode='w') as file:
-        pass #create new file
+    #with open(f+".8xp",mode='w') as file:
+    #    pass #create new file
+
+    print("Done, see .8xpt.temp file for converted program, and copy it to TI Connect CE")
  
 if __name__ != "__main__":
     print("Run convert.py as the main file")
