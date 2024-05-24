@@ -1,0 +1,131 @@
+0→W
+0→S
+0→M
+0→N
+{1}→⌊ATOMS
+{0}→⌊ATOMI
+
+prgmCHEMINIT
+
+Lbl T2
+ClrHome
+Disp "Your molecule currently:"
+" "→Str3
+For(I,1,dim(⌊ATOMI))
+
+⌊ATOMS(I)
+prgmZ1
+If ⌊ATOMI(I)>0
+Str3+Ans+toString(⌊ATOMI(I))→Str3
+End
+If Str3=" ":Then
+Disp "(Empty)
+Else
+Disp sub(Str3,2,length(Str3)-1
+End
+Disp "And the molar mass is: "
+0→W
+For(I,1,dim(⌊ATOMI))
+W+⌊ATOMM(⌊ATOMS(I))*⌊ATOMI(I)→W
+End
+Disp round(W)
+Disp "in g/mol"
+Disp "(Enter to continue)
+Pause 
+
+Lbl T
+Menu("What would you like to do?","Reset Molecule",RM,"Add atom to molecule",AA,"Enter Measurement",MS,"View Measurements",V,"View Molecule",T2)
+
+
+Lbl AA
+Input "Type atom symbol:   ",Str9
+Str9
+prgmZ2
+Ans→A
+Input "How many?   ",B
+0→C
+For(I,1,dim(⌊ATOMS))
+If ⌊ATOMS(I)=A
+Then
+⌊ATOMI(I)+B→⌊ATOMI(I)
+1→C
+End
+End
+
+If C=0:Then
+dim(⌊ATOMS)→X
+X+1→dim(⌊ATOMS)
+X+1→dim(⌊ATOMI)
+B→⌊ATOMI(X+1)
+A→⌊ATOMS(X+1)
+End
+Goto T2
+
+Lbl MS
+Menu("Which measurement entering?","Mass",EM,"Moles",EN,"Gas Volume",EG,"Cancel",T
+)
+
+Lbl EM
+ClrHome
+Input "Mass?",M
+M/W→N
+Goto V
+
+Lbl EN
+ClrHome
+Input "Moles?",N
+N*W→M
+Goto V
+
+Lbl EG
+ClrHome
+Input "Volume(L)?",V
+Menu("P,R,T?","Use Standard Temp Psr",ST,"Use P ATM value",PA,"Use P Torr/mmHg value",PB,"Use P Pascal value",PC)
+Lbl CG
+V/S→N
+N*W→M
+Goto V
+
+
+Lbl ST
+22.41→S
+Goto CG
+
+Lbl PA
+0.0821→R
+ClrHome
+Input "Pressure in ATM?",P)
+Input "Temp?(C)",T
+T+273.15→T
+RT/P→S
+Goto CG
+
+
+Lbl PB
+62.32→R
+ClrHome
+Input "Pressure in Torr/mmHg?",P
+Input "Temp?(C)",T
+temperature+273.15→T
+RT/P→S
+Goto CG
+
+
+Lbl PC
+8.31→R
+ClrHome
+Input "Pressure in kPa?",P
+Input "Temp?(C)",T
+temperature+273.15→T
+RT/P→S
+Goto CG
+
+Lbl V
+ClrHome
+Disp "You Have:"
+Disp N
+Disp "mol,and"
+Disp M
+Disp "g of substance"
+Pause 
+Goto T

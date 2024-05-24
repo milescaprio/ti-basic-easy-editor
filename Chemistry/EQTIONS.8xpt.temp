@@ -1,0 +1,496 @@
+6.626­34→P
+2.9988→S
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lbl A0
+Menu("Choose Equation","(Next Page)",A1,"Hendersen Hasselbalch pH",E0,"Hendersen Hasselbalch pOH",E1,"PV=nRT",E2,"Rate Law Order 0",E3,"Rate Law Order 1",E4,"Rate Law Order 2",E5,"pH",E6,"Quit",Q)
+
+Lbl A1
+Menu("Choose Equation","(Next Page)",A2,"(Prev Page)",A0,"pOH",E7,"Beer's Law A=eBC",E8,"Heat Energy mcT",E9,"Gibbs Free Energy-RTlnK",F0,"Gibbs Free Energy H-TS",F1,"Gibbs Free Energy-nFE",F2,"Quit",Q)
+
+Lbl A2
+Menu("Choose Equation","(Prev Page)",A1,"M1V1=M2V2",F3,"urms=sqrt(3RT/M)",F4,"E=hv",F5,"c=λv",F6,"Eλ=hc",F7,"Quit",Q)
+
+
+Lbl E0:0→E
+Menu("Choose Unknown","pH",U1,"pKa",U2,"A-",U3,"HA",U4)
+Lbl E1:1→E
+Menu("Choose Unknown","pOH",U1,"pKb",U2,"BH+",U3,"B",U4)
+
+Lbl E2:2→E
+Menu("Choose Units","Torr",T,"Atm",A,"Pa",P,"Psi",PS)
+
+Lbl T
+62.3635→R
+Goto B2
+
+Lbl A
+0.0821→R
+Goto B2
+
+Lbl P
+8.314→R
+Goto B2
+
+Lbl PS
+0.7302→R
+Goto B2
+
+Lbl B2
+Menu("Choose Unknown","P",U1,"V",U2,"n",U3,"T",U4)
+
+Lbl E3:3→E
+Menu("Choose Unknown","{At]",U1,"k",U2,"{A0]",U3,"t",U4)
+Lbl E4:4→E
+Menu("Choose Unknown","{At]",U1,"k",U2,"{A0]",U3,"t",U4)
+Lbl E5:5→E
+Menu("Choose Unknown","{At]",U1,"k",U2,"{A0]",U3,"t",U4)
+Lbl E6:6→E
+Menu("Choose Unknown","pH",U1,"{H30+]",U2)
+Lbl E7:7→E
+Menu("Choose Unknown","pOH",U1,"{OH]",U2)
+Lbl E8:8→E
+Menu("Choose Unknown","A",U1,"e",U2,"B",U3,"C",U4)
+Lbl E9:9→E
+Menu("Choose Unknown","q",U1,"m",U2,"c",U3,"deltaT",U4)
+Lbl F0:10→E
+Menu("Choose Unknown","G",U1,"T",U2,"K",U3)
+Lbl F1:11→E
+Menu("Choose Unknown","G",U1,"H",U2,"T",U3,"S",U4)
+Lbl F2:12→E
+Menu("Choose Unknown","G",U1,"n",U2,"E",U3)
+Lbl F3:13→E
+Menu("Choose Unknown","M1",U1,"V1",U2,"M2",U3,"V2",U4)
+Lbl F4:14→E
+Menu("Choose Unknown","urms",U1,"R",U2,"T",U3,"M",U4)
+Lbl F5:15→E
+Menu("Choose Unknown","E",U1,"v",U2)
+Lbl F6:16→E
+Menu("Choose Unknown","λ",U1,"v",U2)
+Lbl F7:17→E
+Menu("Choose Unknown","E",U1,"λ",U2)
+Lbl F8:18→E
+Lbl F9:19→E
+Lbl G0:20→E
+Lbl G1:21→E
+Lbl G2:22→E
+Lbl G3:23→E
+Lbl G4:24→E
+Lbl G5:25→E
+Lbl G6:26→E
+Lbl G7:27→E
+Lbl G8:28→E
+Lbl G9:29→E
+
+Lbl U1
+1→U
+Goto EQ
+Lbl U2
+2→U
+Goto EQ
+Lbl U3
+3→U
+Goto EQ
+Lbl U4
+4→U
+Goto EQ
+
+
+Lbl EQ
+If E=0:Then
+Disp "pH=pKa+log(A-/HA)
+If not(U=1):Input "pH=",A
+If not(U=2):Input "pKa=",B
+If not(U=3):Input "A-=",C
+If not(U=4):Input "HA=",D
+If U=1:Then
+B+log(C/D)→A
+Disp "pH=",A
+End
+If U=2:Then
+A-log(C/D)→B
+Disp "pKa=",B
+End
+If U=3:Then
+(10^(A-B))*D→C
+Disp "A-=",C
+End
+If U=4:Then
+C/(10^(A-B))→D
+Disp "HA=",D
+End
+End
+
+If E=1:Then
+Disp "pOH=pKb+log(BH+/B)
+If not(U=1):Input "pOH=",A
+If not(U=2):Input "pKb=",B
+If not(U=3):Input "BH+=",C
+If not(U=4):Input "B=",D
+If U=1:Then
+B+log(C/D)→A
+Disp "pOH=",A
+End
+If U=2:Then
+A-log(C/D)→B
+Disp "pKb=",B
+End
+If U=3:Then
+(10^(A-B))*D→C
+Disp "BH+=",C
+End
+If U=4:Then
+C/(10^(A-B))→D
+Disp "B=",D
+End
+End
+
+If E=2:Then
+Disp "PV=nRT
+If not(U=1):Input "P(in R units chosen)=",A
+If not(U=2):Input "V(L)=",B
+If not(U=3):Input "n=",C
+If not(U=4):Input "T(K)=",D
+If U=1:Then
+C*R*D/B→A
+Disp "P(in R units)=",A
+End
+If U=2:Then
+C*R*D/A→B
+Disp "V [L]=",B
+End
+If U=3:Then
+A*B/R/D→C
+Disp "n=",C
+End
+If U=4:Then
+A*B/R/C→D
+Disp "T [K]=",D
+End
+End
+
+If E=3:Then
+Disp "[At]=-kt+[A0]
+If not(U=1):Input "[At]=",A
+If not(U=2):Input "k=",B
+If not(U=3):Input "[A0]=",C
+If not(U=4):Input "t=",D
+If U=1:Then
+­B*D+C→A
+Disp "[At]=",A
+End
+If U=2:Then
+­(A-C)/D→B
+Disp "k=",B
+End
+If U=3:Then
+(A+B*D)→C
+Disp "[A0]=",C
+End
+If U=4:Then
+(C-A)/B→D
+Disp "t=",D
+End
+End
+
+If E=4:Then
+Disp "ln[At]=-kt+ln[A0]
+If not(U=1):Input "[At]=",A
+If not(U=2):Input "k=",B
+If not(U=3):Input "[A0]=",C
+If not(U=4):Input "t=",D
+If U=1:Then
+e^(ln(C)-B*D)→A
+Disp "[At]=",A
+End
+If U=2:Then
+(ln(C)-ln(A))/D→B
+Disp "k=",B
+End
+If U=3:Then
+e^(ln(A)+B*D)→C
+Disp "[A0]=",C
+End
+If U=4:Then
+(ln(C)-ln(A))/B→D
+Disp "t=",D
+End
+End
+
+If E=5:Then
+Disp "1/[At]=kt+1/[A0]
+If not(U=1):Input "[At]=",A
+If not(U=2):Input "k=",B
+If not(U=3):Input "[A0]=",C
+If not(U=4):Input "t=",D
+If U=1:Then
+1/(B*D+1/C)→A
+Disp "[At]=",A
+End
+If U=2:Then
+(1/A-1/C)/D→B
+Disp "k=",B
+End
+If U=3:Then
+1/(­B*D+1/A)→C
+Disp "[A0]=",C
+End
+If U=4:Then
+(1/A-1/C)/B→D
+Disp "t=",D
+End
+End
+
+If E=6:Then
+Disp "pH=-log([H30+])
+If not(U=1):Input "pH=",A
+If not(U=2):Input "[H30+]=",B
+If U=1:Then
+­log(B)→A
+Disp "pH=",A
+End
+If U=2:Then
+10^(­A)→B
+Disp "[H30+]=",B
+End
+End
+
+If E=7:Then
+Disp "pOH=-log([OH])
+If not(U=1):Input "pOH=",A
+If not(U=2):Input "[OH]=",B
+If U=1:Then
+­log(B)→A
+Disp "pOH=",A
+End
+If U=2:Then
+10^(­A)→B
+Disp "[OH]=",B
+End
+End
+
+If E=8:Then
+Disp "A=eBC
+If not(U=1):Input "A=",A
+If not(U=2):Input "e=",B
+If not(U=3):Input "B=",C
+If not(U=4):Input "C=",D
+If U=1:Then
+B*C*D→A
+Disp "A=",A
+End
+If U=2:Then
+A/C/D→B
+Disp "e=",B
+End
+If U=3:Then
+A/B/D→C
+Disp "B=",C
+End
+If U=4:Then
+A/B/C→D
+Disp "C=",D
+End
+End
+
+If E=9:Then
+Disp "q=mcDT
+If not(U=1):Input "heat q [Joules]=",A
+If not(U=2):Input "mass m [kg]=",B
+If not(U=3):Input "c=",C
+If not(U=4):Input "deltaT=",D
+If U=1:Then
+B*C*D→A
+Disp "heat q [Joules]=",A
+End
+If U=2:Then
+A/C/D→B
+Disp "mass m [kg]=",B
+End
+If U=3:Then
+A/B/D→C
+Disp "specific heat c=",C
+End
+If U=4:Then
+A/B/C→D
+Disp "deltaT=",D
+End
+End
+
+If E=10:Then
+8.314→R
+Disp "G=-RTlnK
+If not(U=1):Input "G [Joules]=",A
+If not(U=2):Input "T [Kelvin]=",B
+If not(U=3):Input "K=",C
+If U=1:Then
+­R*B*ln(C)→A
+Disp "G [J]=",A
+End
+If U=2:Then
+­A/R/ln(C)→B
+Disp "T [K]=",B
+End
+If U=3:Then
+e^(_A/R/B)→C
+Disp "K=",C
+End
+End
+
+If E=11:Then
+Disp "G=H-TS
+If not(U=1):Input "G [Joules]=",A
+If not(U=2):Input "H [Joules]=",B
+If not(U=3):Input "T [Kelvin]=",C
+If not(U=4):Input "S [Joules/Kelvin]==",D
+If U=1:Then
+B-C*D→A
+Disp "G [Joules]=",A
+End
+If U=2:Then
+A+C*D→B
+Disp "H [Joules]=",B
+End
+If U=3:Then
+(B-A)/D→C
+Disp "T [Kelvin]=",C
+End
+If U=4:Then
+(B-A)/C→D
+Disp "S [Joules/Kelvin]=",D
+End
+End
+
+If E=12:Then
+96485→F
+Disp "G=-nFE
+If not(U=1):Input "G [Joules]=",A
+If not(U=2):Input "n(e-in net ionic)=",B
+If not(U=3):Input "Ecell=",C
+If U=1:Then
+­B*F*C→A
+Disp "G [Joules]=",A
+End
+If U=2:Then
+­A/F/C→B
+Disp "n(e-in net ionic)=",B
+End
+If U=3:Then
+­A/F/B→C
+Disp "Ecell=",C
+End
+End
+
+If E=13:Then
+Disp "M1V1=M2V2
+Disp "You can use either liters
+Disp "or milliliters,but stay
+Disp "consistent
+If not(U=1):Input "M1=",A
+If not(U=2):Input "V1=",B
+If not(U=3):Input "M2=",C
+If not(U=4):Input "V2=",D
+If U=1:Then
+C*D/B→A
+Disp "M1=",A
+End
+If U=2:Then
+C*D/A→B
+Disp "V1=",B
+End
+If U=3:Then
+A*B/D→C
+Disp "M2=",C
+End
+If U=4:Then
+A*B/C→D
+Disp "V2=",D
+End
+End
+
+If E=14:Then
+8.314→R
+Disp "urms=sqrt(3RT/M)
+If not(U=1):Input "urms=",A
+If not(U=2):Input "R=",B
+If not(U=3):Input "T=",C
+If not(U=4):Input "M=",D
+If U=1:Then
+sqrt(3*B*C/D)→A
+Disp "urms=",A
+End
+If U=2:Then
+A^2*D/3/C→B
+Disp "R=",B
+End
+If U=3:Then
+A^2*D/3/B→C
+Disp "T=",C
+End
+If U=4:Then
+A^2*B/3/C→D
+Disp "M=",D
+End
+End
+
+If E=15:Then
+Disp "E=hv
+If not(U=1):Input "E [Joules]=",A
+If not(U=2):Input "v [Hz]=",B
+If U=1:Then
+B*P→A
+Disp "E [Joules]=",A
+End
+If U=2:Then
+A/P→B
+Disp "v [Hz]=",B
+End
+End
+
+If E=16:Then
+Disp "c=λv
+If not(U=1):Input "λ [m]=",A
+If not(U=2):Input "v [Hz]=",B
+If U=1:Then
+S/B→A
+Disp "c=",A
+End
+If U=2:Then
+S/A→B
+Disp "v=",B
+End
+End
+
+If E=17:Then
+Disp "Eλ=hc
+If not(U=1):Input "E [Joules]=",A
+If not(U=2):Input "λ [m]=",B
+If U=1:Then
+P*S/B→A
+Disp "E [Joules]=",A
+End
+If U=2:Then
+P*S/A→B
+Disp "λ [m]=",B
+End
+End
+
+Lbl Q

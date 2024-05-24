@@ -1,0 +1,114 @@
+&multiplier&M
+&menu&A
+|AddTerm|AT
+|Add|A
+|Subtract|S
+|Multiply|M
+|Differentiate|D
+|Integrate|I
+|Operand|T
+|PolyMain|P
+|Store|ST
+|ViewOp|VT
+|View|V
+|Rcl|RC
+|View|V
+|Done|DT
+
+/*1 ADD 2 SUB 3 MUL 4 DIFF 5 INTEGR*/
+0->A
+[0]->l_POLY
+[0]->l_TPOLY
+Lbl P
+Menu(;
+    "Main Polyn Operation",;
+    "View Polynomial",View,;
+    "Add",Add,;
+    "Subtract",Subtract,;
+    "Multiply",Multiply,;
+    "Differentiate",Differentiate,;
+    "Integrate",Integrate,;
+    "Store",Store)
+
+"M is multiplier for adding and subtracting
+"A is menu option
+
+Lbl Add
+    1 -> multiplier_
+    1 -> menu_
+Goto Operand
+
+Lbl Subtract
+    -_1 -> multiplier_
+    2 -> menu_ 
+Goto Operand
+
+Lbl Multiply
+    3 -> menu_
+Goto Operand
+
+Lbl Differentiate
+    4 -> menu_
+Goto Operand
+
+
+Lbl Integrate
+    5 -> menu_
+Goto Operand
+
+
+
+Lbl Operand
+[0]->l_TPOLY
+Menu(;
+    "Operand Polyn",;
+    "Add term",AT,;
+    "Recall",RC,;
+    "View",VT,;
+    "Done",DT)
+
+Lbl AddTerm
+    Input "Exp?",E
+    Input "Coeff?",C
+    If dim(l_TPOLY)<E+1
+        E+1 -> dim(l_TPOLY)
+    l_TPOLY(E+1)+C -> l_TPOLY(E+1)
+Goto Operand
+
+Lbl ViewOp
+    dim(l_TPOLY) -> E
+    For(I,E,1,0-­1) {.
+        Disp toString(l_TPOLY(I))+"X"+toString(I)
+    }
+    Pause   
+Goto Operand
+
+Lbl Done
+    If menu_=1 {
+        For(I, 1, min(dim(l_TPOLY),dim(l_POLY))) {.
+            l_POLY(I)+M*l_TPOLY(I)->l_POLY
+        }
+    }
+    If menu_=2 {
+        For(I, 1, min(dim(l_TPOLY),dim(l_POLY))) {.
+            l_POLY(I)-M*l_TPOLY(I)->l_POLY
+        }
+    }
+    If menu_=3 {
+        
+    }
+    If menu_=4 {
+        
+    }
+    If menu_=5 {
+        
+    }
+    Goto PolyMain
+
+Lbl View {.
+    dim(l_POLY) -> E
+    For(I,E,1,0-­1) {.
+        Disp toString(l_TPOLY(I))+"X"+toString(I)
+    }
+    Pause  
+}.Goto PolyMain

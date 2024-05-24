@@ -1,0 +1,112 @@
+&pWhichever&P
+&KWhichever&K
+&molarity&M
+
+
+Menu("Solve For", "pH or pOH",P "Ka or Kb", K)
+Lbl P: 0->A:Goto M1:Lbl K: 1->A:Goto M1
+Lbl M1
+Menu("I have an...", "Acid", A, "Base", B)
+Lbl A: 0->B:Goto M2:Lbl B: 1->B:Goto M2
+Lbl M2
+Menu("I'm using...", "pH", PH, "pOH", PO)
+Lbl PH: 0->C:Goto M3:Lbl PO: 1->C:Goto M3
+Lbl M3
+Menu("I'm using..." "Ka", KA, "Kb", KB)
+Lbl KA: 0->D:Goto M4:Lbl KB: 1->D:Goto M4
+Lbl M4
+
+If B=0 {
+    Input "Weak Acid molarity?=", M
+}
+
+If B=1 {
+    Input "Weak Base molarity?=", M
+}
+
+If A=0 and C=0 {
+    Input "pH value?=", pWhichever_
+    If B=1 {
+        14-pWhichever_->pWhichever_
+    }
+}
+
+If A=0 and C=1 {
+    Input "pOH value?=", pWhichever_
+    If B=0 {
+        14-pWhichever_->pWhichever_
+    }
+}
+
+If A=1 and C=0 {
+    Input "Ka value?=", KWhichever_
+    If B=1 {
+        10_E_-_14 / KWhichever_-> KWhichever_
+    }
+}
+
+If A=1 and C=1 {
+    Input "Kb value?=", KWhichever_
+    If B=0 {
+        10_E_-_14 / KWhichever_-> KWhichever_
+    }
+}
+
+If B=0 {
+    round(M, 3)->M
+    toString(M)->Str9
+    length(Str9)->L
+    For(I,1,5-L) {.
+        Str9+" "->Str9
+    }
+    ClrHome
+    Disp "HA  +  H2O -> H3O+  +  A-"
+    Disp  Str9+"         0       0"
+    Disp  Str9+"-x      +x      +x"    
+    Disp "x^2/("+Str9+"-x) = "+KWhichever_  
+}
+
+Lbl B
+0 -> Q
+1 -> I
+While I {.
+    Disp "Type 0 to move to products"
+    Input "Reactant #" + toString(I) + "value?=", X
+    If X=0 {
+        -_1->I
+    }
+    Input "Coefficient?", Y
+    Q-YXC->Q
+    I+1->I
+}
+
+1->I
+While I {.
+    Disp "Type 0 to move on"
+    Input "Product #" + toString(I) + "value?=", X
+    If X=0 {
+        -_1->I
+    }
+    Input "Coefficient?", Y
+    Q+YXC->Q
+    I+1->I
+}
+
+If not(T=2) {
+    Input "Total Delta value?=", K
+    If T=0 {
+        Input "Missing reactant coeff?=", Y
+        //(Q/K)^(1/Y)->N
+        C(Q-K)/Y->N
+        Disp "Reactant value=", N
+    }
+    If T=1 {
+        Input "Missing product coeff?=", Y
+        C(Q+K)/Y->N
+        Disp "Product value=", N
+    }
+}
+
+If T=2 {
+    Disp "Total Delta value=", Q
+}

@@ -1,0 +1,24 @@
+ClrScr
+Disp "Confirm that the V for the discrete Xth derivaive is in Y1"
+Input "What V is the approximation at?",X
+Input "Where is the A of the approximation?",A
+Input "Approximation Iterations?",N
+
+
+Goto M
+
+
+Lbl M
+
+
+0→S
+For(I,0,N,1)
+Disp toString(I)+": "+toString(Y₁(I)+" * ("+toString(X)+    "-"+toString(A)+")^"+toString(I)+" / "+toString(I)+"!"
+Y₁(I)/I! → C
+C*(X-A)^I → V
+Disp "(C): "+toString(C)
+Disp "(V): "+toString(V)
+S+V → S
+
+End
+Disp "Approx Sum: "+toString(S)

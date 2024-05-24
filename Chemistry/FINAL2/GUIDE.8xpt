@@ -1,0 +1,115 @@
+ClrHome
+Disp "Chemistry Program + App
+Disp "Compilation for use on AP
+Disp "Exam. Press [PRGM] to see
+Disp "list (or [Apps] for 
+Disp "periodic table) and
+Disp "[Enter] twice to run.
+Disp "Press [ON] to force quit
+Disp "a program at any time.
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "These programs should only
+Disp "serve as assistive tools
+Disp "and quick references.
+Disp "If you don't know how to 
+Disp "do a problem, move on;
+Disp "don't just keep consulting
+Disp "the calculator, that would
+Disp "be an easy way to  
+Disp "massively waste your time.
+
+Pause 
+ClrHome
+
+Disp "LOOKUP: Quickly find the 
+Disp "atomic number of any atom
+Disp "by typing in the symbol
+Disp "(in caps).
+Disp "
+Disp "EQTIONS: 
+Disp "Choose an equation and 
+Disp "solve for any unknown
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "MOLES:
+Disp "Quickly solve for the 
+Disp "molar mass of a molecule
+Disp "by inputting its atoms.
+Disp "Automatically convert 
+Disp "from moles to grams or
+Disp "grams to moles
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "VSEPR: (Adopted Online)
+Disp "Find hybridization and
+Disp "shape based on bond count
+Disp " 
+Disp "EQUILIBR:
+Disp "Solve for K or any product
+Disp "Or reactant in an 
+Disp "equilibrium reaction
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "STATEFN:
+Disp "Calculate the value of a 
+Disp "state function or one of 
+Disp "the reactants or products
+Disp "Such as delta H, S, G
+Disp "(Enter to continue)
+Pause 
+ClrHome 
+
+Disp "WEAKICE:
+Disp "Calculate the pH of a 
+Disp "weak acid or base
+Disp "Or the Ka or Kb value
+Disp "of a weak acid or base
+Disp "from the pH
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "MEMORIZE:
+Disp "A bunch of random notes
+Disp "
+Disp "Periodic (in Apps)
+Disp "(Builtin):
+Disp "View information about 
+Disp "atoms including electron
+Disp "...
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+
+Disp "configuration, polarity,
+Disp "atomic radius, first ionzn
+Disp "energy, melting + boiling 
+Disp "pt, etc. Move cursor to
+Disp "element then press [Zoom]
+Disp "to change to list mode and
+Disp "[Trace] to switch back.
+Disp "...
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+
+Disp "Press [Enter] and 
+Disp "navigate with arrows;
+Disp "there's multiple pages of
+Disp "info. Use these values 
+Disp "to your advantage for 
+Disp "periodic trend questions.
+Disp "(Enter to continue)
+Pause 
+ClrHome

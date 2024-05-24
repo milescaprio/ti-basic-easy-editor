@@ -1,0 +1,150 @@
+ClrHome
+Disp "Strong Acids:HCl HBr HI
+Disp "HNO3 HClO4 H2SO4
+Disp "Strong Bases:LiOH NaOH KOH
+Disp "Ca(OH)2 Sr(OH)2 Ba(OH)2
+Disp "Things that dissolve:Group
+Disp "1A,acetate,NH4+,NO3- :Like
+Disp "dissolves like polarity
+Disp "Diatomic:HOFBrINCl
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+
+Disp "Ammonium     NH4+1"  
+Disp "Hydronium    H3O+1"  
+Disp "Hydroxide    OH-1"   
+Disp "Nitrate      NO3-1"  
+Disp "Nitrite      NO2-1"  
+Disp "Sulfate      SO4-2"  
+Disp "Sulfite      SO3-2"  
+Disp "Phosphate    PO4-3"  
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+Disp "Phosphite    PO3-3"  
+Disp "Carbonate    CO3-2"  
+Disp "BiCarbonate  HCO3-1" 
+Disp "Cyanide      CN-1"   
+Disp "Permanganate MnO4-1" 
+Disp "Acetate      C2H3O2-1
+Disp "Peroxide     O2-2"   
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+Disp "eneg increases towards the
+Disp "right and up
+Disp "All other trends follow
+Disp "except atomic size,
+Disp "which incr right and down
+Disp "(Press enter to continue)
+Pause 
+ClrHome 
+
+Disp "Endothermic: delta H > 0
+Disp "Spontaneous: delta G < 0
+Disp "(dH < 0 and dS > 0)
+Disp "(or sometimes when one of
+Disp "them flipped,nonspotneous
+Disp "when both flipped)
+Disp "Galvanic: Spontaneous
+Disp "Electrolytic: Nonspont
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+Disp "cohesive attraction:
+Disp "across same atoms
+Disp "adhesive attraction: 
+Disp "chromatography:
+Disp "paper is polar
+Disp "travel up increases with
+Disp "less polar mobile phase
+Disp "Eluent:enter Eluate:exit
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+Disp "LDF increase with mass
+Disp "Dipole Dipole increase w
+Disp "polarity,H bonding incr
+Disp "with count and polarity
+Disp "Hydrogen Bonding: HF HO HN
+Disp "anode/ion
+Disp "an ox red cat,e=ecat-ean
+Disp "Half reaction proceeds if
+Disp "E > 0
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+Disp "Oxidation Number Rules
+Disp "Al=+3,O=-2 except as O2 or
+Disp "H2O2(then-1),H=+1 except
+Disp "LiH NaH CaH2(then-1)
+Disp "F=-1 except for F2 and HOF
+Disp "(then 0,+1 respectively)
+Disp "Sum numbers=ion charge
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+
+
+Disp "Titrations:
+Disp "Henderson hasselbalch:
+Disp "Only before equivalence pt
+Disp "Use difference of H and OH"
+Disp "concentrations afterward 
+Disp "for pH
+Disp "Remember to account for
+Disp "changes in volume when
+Disp "tracking moles 
+Pause 
+ClrHome
+
+Disp "Ranking Acid Strengths:
+Disp "Use resonance of conj base
+Disp ", eneg, radius, Ka,O count
+Disp "Stronger acid means weaker
+Disp "conjugate base
+Disp "pH of weak acid/base: use
+Disp "ice table, which gives you 
+Disp "pH=-0.5log([C]*Ka)
+Disp "for acids:use correct ...
+Disp "(Press enter to continue)
+Pause 
+ClrHome
+
+Disp "Ka or Kb and pH or pOH for
+Disp "The circumstances.
+Disp "Strong+Strong:difference
+Disp "of OH and H
+Disp "Weak+Strong: Buffer
+Disp "Weak+Weak: compare Ka & Kb
+Disp "(Press enter to continue)
+Pause
+ClrHome
+
+Disp "Above 700 nm: infrared
+Disp "400-700 nm: visible
+Disp "Below 400 nm: UV
+Disp "UV -> energy levels
+Disp "IR -> molecular vibrations
+Disp "(Press enter to continue)
+Pause
+ClrHome
+
+Disp "Deviation from Ideal Gas:
+Disp "High P, Low T, High M
+Disp "with more IMFs
+Disp "Melting Point:
+Disp "Network>ionic>metallic
+Disp ">covalent molecular
+Disp "(Press enter to continue)
+Pause
+ClrHome
+

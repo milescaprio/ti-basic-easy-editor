@@ -1,0 +1,126 @@
+&offset&O
+&method&A
+&sum&P
+&start&S
+&end&E
+&dx&X 
+&count&D
+&i&I
+
+|Discrete|DF
+|Continuous|CF
+|ContEval|C
+|LeftCont|LA
+|RightCont|RA
+|MidCont|MA
+|TrapCont|TA
+|LeftDisc|LB
+|RightDisc|RB
+|MidDisc|MB
+|TrapDisc|TB
+|DiscEval|D
+|Found|F
+|Done|DO
+
+|Home|H
+
+
+Lbl Home:
+
+Menu(;
+    "Function Type",;
+    "Discrete", Discrete,;
+    "Continuous", Continuous,;
+)
+
+Lbl CF 
+    ClrScr
+    Disp "If function isn't in Y_1, press ON and add it".
+    Pause 
+    Input "Starting Point?", start_
+    Input "Ending Point?", end_
+    Input "Increment?", dx_
+    (end_-start_)/dx_ -> count_
+
+    Menu(;
+        "Riemann Approx Type:",;
+        "Left",LeftCont,;
+        "Right",RightCont,;
+        "Midpoint",MidCont,;
+        "Trapezoidal",TrapCont;
+    )
+
+    1->method_
+    Lbl LeftCont 
+        0->offset_
+    Goto ContEval
+    Lbl RightCont
+        1->offset_
+    Goto ContEval
+    Lbl MA
+        0.5->offset_
+    Goto ContEval
+    Lbl TA
+        0->method_
+    
+    Lbl ContEval
+
+    0 -> sum_
+    If method_ {
+        For(I, 0, D-1) {.
+            sum_+Y_1(I*dx_+start_+offset_)*dx_ -> sum_
+        }
+    Else
+        For(I, 0, D-1) {.
+            sum_+(Y_1(I*dx_+start_)+Y1(I*dx_+dx_+S))/2*X -> P
+        }
+    }
+
+    Disp "Sum:"
+    Disp sum_
+    Pause 
+Goto Home
+
+Lbl Discrete
+    ClrScr
+    Disp "If function isn't in L1 and L2, press ON and add it".
+    Input "Starting Point?", start_
+    Input "Ending Point?", end_
+    Menu(;
+        "Riemann Approx Type:",;
+        "Left",LeftDisc,;
+        "Right",RightDisc,;
+        "Trapezoidal",TrapDisc;
+    )
+
+    0 -> method_
+
+    Lbl LeftDisc 
+        0->offset_
+    Goto DiscEval
+
+    Lbl RightDisc
+        1->offset_
+    Goto DiscEval
+
+    Lbl TrapDisc
+        1->method_
+    Goto DiscEval
+
+    Lbl DiscEval
+        If not method_ {
+            1->i_
+            While 1 {.
+                If L_1(i_) >= start_ {
+                    Goto Found
+                }
+            }
+            Lbl Found
+            
+
+
+
+            Lbl Done
+        }
+
+Goto Home

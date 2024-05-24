@@ -1,0 +1,75 @@
+Disp "Products-Reactants for "
+Disp "everything except*bond*"
+Disp "enthalpy."
+Disp "(Enter to continue)
+Pause 
+ClrHome
+1→C
+Menu(" ","Products-Reactants",PR,"Reactants-Products",RP)
+Lbl RP
+­1→C
+Lbl PR
+Menu("Solve For","Reactant value",R,"Product value",P,"Total Delta",K)
+
+Lbl R
+0→T
+Goto B
+
+Lbl P
+1→T
+Goto B
+
+Lbl K
+2→T
+Goto B
+
+Lbl B
+0→Q
+1→I
+While I
+Disp "Type 0 to move to products"
+Input "Reactant #"+toString(I)+"value?=",X
+If X=0
+Then
+­1→I
+End
+Input "Coefficient?",Y
+Q-YXC→Q
+I+1→I
+End
+
+1→I
+While I
+Disp "Type 0 to move on"
+Input "Product #"+toString(I)+"value?=",X
+If X=0
+Then
+­1→I
+End
+Input "Coefficient?",Y
+Q+YXC→Q
+I+1→I
+End
+
+If not(T=2)
+Then
+Input "Total Delta value?=",K
+If T=0
+Then
+Input "Missing reactant coeff?=",Y
+
+C(Q-K)/Y→N
+Disp "Reactant value=",N
+End
+If T=1
+Then
+Input "Missing product coeff?=",Y
+C(Q+K)/Y→N
+Disp "Product value=",N
+End
+End
+
+If T=2
+Then
+Disp "Total Delta value=",Q
+End

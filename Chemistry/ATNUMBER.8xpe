@@ -1,0 +1,21 @@
+&atomsymup&Str0 //Index with blocks of 3
+
+Ans->Str9
+
+If Str9="B":Then
+5
+Return:End
+
+If Str9="S":Then
+16
+Return:End
+
+If Str9="I":Then
+53
+Return:End
+
+If Str9="U":Then
+92
+Return:End
+
+(inString(atomsymup_, Str9) + 2) / 3

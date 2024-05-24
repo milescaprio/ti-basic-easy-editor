@@ -1,0 +1,86 @@
+0→A
+{0}→⌊POLY
+{0}→⌊TPOLY
+Lbl P
+Menu("Main Polyn Operation","View Polynomial",V,"Add",A,"Subtract",S,"Multiply",M,"Differentiate",D,"Integrate",I,"Store",ST)
+
+"M is multiplier for adding and subtracting
+"A is menu option
+
+Lbl A
+1→M
+1→A
+Goto T
+
+Lbl S
+-1→M
+2→A
+Goto T
+
+Lbl M
+3→A
+Goto T
+
+Lbl D
+4→A
+Goto T
+
+
+Lbl I
+5→A
+Goto T
+
+
+
+Lbl T
+{0}→⌊TPOLY
+Menu(
+"Operand Polyn","Add term",AT,"Recall",RC"View",VT,"Done",DT)
+
+Lbl AT
+Input "Exp?",E
+Input "Coeff?",C
+If dim(⌊TPOLY)<E+1
+E+1→dim(⌊TPOLY)
+⌊TPOLY(E+1)+C→⌊TPOLY(E+1)
+Goto T
+
+Lbl VT
+For(I,E+1,0,­1)
+Disp toString(⌊TPOLY(I))+"X"+toString(I)
+End
+Pause
+Goto T
+
+Lbl DT
+If A=1
+Then
+For(I,1,min(dim(⌊TPOLY),dim(⌊POLY)))
+⌊POLY(I)+M*⌊TPOLY(I)→⌊POLY
+End
+End
+If A=2
+Then
+For(I,1,min(dim(⌊TPOLY),dim(⌊POLY)))
+⌊POLY(I)-M*⌊TPOLY(I)→⌊POLY
+End
+End
+If A=3
+Then
+
+End
+If A=4
+Then
+
+End
+If A=5
+Then
+
+End
+
+Lbl V
+For(I,E+1,0,­1)
+Disp toString(⌊TPOLY(I))+"X"+toString(I)
+End
+Pause
+Goto P 

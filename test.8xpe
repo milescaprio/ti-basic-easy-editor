@@ -1,0 +1,29 @@
+&i&I
+&coeff&C         
+&value&V
+&center&A
+|Main|M
+
+ClrScr
+Disp "Confirm that the value_ for the d;
+iscrete Xth deriva/*t*/ive is in Y1" 
+Input "What value_ is the approximation at?", X
+Input "Where is the center_ of the approximation?", center_
+Input "Approximation Iterations?", N
+
+
+Goto Main
+
+Lbl Main
+
+0->S
+For(I,0,N,1)
+    Disp toString(I)+": "+toString(Y_1(I)+" * ("+toString(X)+;
+    "-"+toString(center_)+")^"+toString(I)+" / "+toString(I)+"!"
+    Y_1(I)/I! -> coeff_
+    coeff_*(X-A)^I -> value_
+    Disp "(coeff_): "+toString(C)
+    Disp "(value_): "+toString(V)
+    S+V -> S
+}
+Disp "Approx Sum: "+toString(S)

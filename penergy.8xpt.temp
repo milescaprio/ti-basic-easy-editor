@@ -1,0 +1,189 @@
+10→G
+6.6743*10^­11→H
+
+0→E
+1→M
+0→A
+0→B
+0→D
+0→C
+
+
+
+
+
+
+
+ClrHome
+Disp "Welcome to Energy!"
+Disp "Add values to the left"
+Disp "(initial)and the right"
+Disp "(final)and then convert"
+Disp "Remaining energy into an"
+Disp "Unknown. g is by default"
+Disp "10 m/s^2."
+Disp "Press Enter to continue."
+Pause 
+
+
+
+Lbl HM
+Disp "You have "
+Disp round(E)
+Disp " NRG on initial side"
+Pause 
+Menu("Energy:" ;,
+"Add Initial Energy",AE,"Add Initial NRG Value",AV,"Add Final Energy",RE,"Add Final NRG Value",RV,"Convert Remaining Final",CV,"Change Gravity Accel",CG,"Done",Q)
+
+
+Lbl CG
+ClrHome
+Disp "Current Grav Accel:"
+Disp G
+Input "New Grav Accel: ",G
+Goto HM
+
+Lbl RE
+­1→M
+Goto E
+
+Lbl AE
+1→M
+Goto E
+
+Lbl E
+
+
+Menu("What type of Energy","Kinetic NRG",KA,"Grav Pot NRG",GA,"Elastic Pot NRG",EA,"Large Grav Pot NRG",LA,"Angular Kinetic NRG",AA,"Cancel",HM)
+
+Lbl KA
+ClrHome
+Input "Mass? ",A
+Input "Velocity? ",C
+E+1/2*A*C*C*M→E
+Goto HM
+
+Lbl EA
+ClrHome
+Input "Spring Constant? ",A
+Input "Displacement? ",C
+E+1/2*A*C*C*M→E
+Goto HM
+
+Lbl GA
+ClrHome
+Input "Mass? ",A
+Input "Height? ",B
+E+B*A*G*M→E
+Goto HM
+
+Lbl LA
+ClrHome
+Input "Attractor Mass",A
+Input "Object Mass",D
+Input "Radius",B
+E-H*A*D/B*M→E
+Goto HM
+
+Lbl AA
+ClrHome
+Input "Moment of Inertia",A
+Input "Angular Velocity",C
+E+1/2*A*C*C*M→E
+Goto HM
+
+Lbl AV
+1→M
+Goto V
+
+Lbl RV
+­1→M
+Goto V
+
+Lbl V
+Input "Energy amount?",A
+E+A*M→E
+Goto HM
+
+Lbl CV
+Menu("Which energy type?","Kinetic",KC,"Elastic Potential",EC,"Gravitational Potential",GC,"Cancel",HM)
+
+Lbl KC
+Menu("What variable do you want?","Mass",KM,"Velocity",KV,"Cancel",CV)
+
+Lbl EC
+Menu("What variable do you want?","Spring Constant",ES,"Displacement",ED,"Cancel",CV)
+
+Lbl GC
+Menu("What variable do you want?","Height",GH,"Mass",GM,"Grav Acceleration",GG,"Cancel",CV)
+
+Lbl LC
+Menu("What variable do you want?,"Radius",LR,"Large Mass",LM,"Cancel,CV)
+
+Lbl KM
+Input "Velocity? ",C
+Disp "Mass:"
+Disp E/(1/2*C*C)
+Pause 
+Goto HM
+
+Lbl KV
+Input "Mass? ",A
+Disp "Velocity:
+Disp (E/(1/2*A))^(1/2)
+Pause 
+Goto HM
+
+Lbl AI
+Input "Ang Velocity? ",C
+Disp "Moment of Inertia:"
+Disp E/(1/2*C*C)
+Pause 
+Goto HM
+
+Lbl AW
+Input "Moment Of Intertia? ",A
+Disp "Ang Velocity:
+Disp (E/(1/2*A))^(1/2)
+Pause 
+Goto HM
+
+Lbl ES
+Input "Displacement? ",C
+Disp "Spring Constant:
+Disp E/(1/2*C*C)
+Pause 
+Goto HM
+
+Lbl ED
+Input "Spring Constant:",A
+Disp "Displacement:
+Disp (E/(1/2*A))^(1/2)
+Pause 
+Goto HM
+
+Lbl GH
+Input "Mass:",A
+Disp "Height:"
+Disp (E/(A*G))
+Pause 
+Goto HM
+
+
+Lbl GM
+Input "Mass:",B
+Disp "Height:"
+Disp (E/(B*G))
+Pause 
+Goto HM
+
+Lbl GG
+Input "Mass:",B
+Disp "Height:"
+Disp (E/(A*B))
+Pause 
+Goto HM
+
+Lbl LrgGet
+
+Lbl Q

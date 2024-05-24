@@ -1,0 +1,120 @@
+ClrHome
+Disp "Chemistry Program + App
+Disp "Compilation for use on AP
+Disp "Exam. Press [PRGM] to see
+Disp "list (or [Apps] for 
+Disp "periodic table) and
+Disp "[Enter] twice to run.
+Disp "Press [ON] to force quit
+Disp "a program at any time.
+Disp "(Enter to continue)
+Pause
+ClrHome
+
+Disp "These programs should only
+Disp "serve as assistive tools
+Disp "and quick references.
+Disp "If you don't know how to 
+Disp "do a problem, move on;
+Disp "don't just keep consulting
+Disp "the calculator, that would
+Disp "be an easy way to massively 
+Disp "waste your time.
+
+
+//Disp "Important: The goal of 
+//Disp "these programs is to
+//Disp "provide you with useful
+//Disp "tools during the exam,
+//Disp "and only quick references;
+//Disp "do not spend large amounts
+//Disp "searching for a way to
+//Disp "use them on a problem you
+//Disp "don't known how to do.
+//Disp "When in doubt, skip the
+//Disp "problem, don't consult 
+//
+//Do not spend
+//Disp "excessive amounts of time
+//Disp "fiddling with 
+//
+//Disp "Important: Do not spend
+//Disp "extensive amounts of time
+//Disp "time sifting through these
+//Disp "notes or retrying using
+//Disp "programs during the exam.
+//Disp "Although they contain
+//Disp "helpful tools and info,
+//Disp "when in doubt, do the 
+//Disp "problem yourself or skip
+//Disp "it.
+Pause 
+ClrHome
+
+Disp "LOOKUP: Quickly find the 
+Disp "atomic number of any atom
+Disp "by typing in the symbol
+Disp "(in caps).
+Disp "
+Disp "EQTIONS: 
+Disp "Choose an equation and 
+Disp "solve for any unknown
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "MOLES:
+Disp "Quickly solve for the 
+Disp "molar mass of a molecule
+Disp "by inputting its atoms.
+Disp "Automatically convert 
+Disp "from moles to grams or
+Disp "grams to moles
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "VSEPR: (Adopted Online)
+Disp "Find hybridization and
+Disp "shape based on bond count
+Disp " 
+Disp "EQUILIBR:
+Disp "Solve for K or any product
+Disp "Or reactant in an 
+Disp "equilibrium reaction
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+Disp "MEMORIZE:
+Disp "A bunch of random notes
+Disp "
+Disp "Periodic (in Apps)
+Disp "(Builtin):
+Disp "View information about 
+Disp "atoms including electron
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+
+Disp "configuration, polarity,
+Disp "atomic radius, first ionzn
+Disp "energy, melting + boiling 
+Disp "pt, etc. Move cursor to
+Disp "element then [Enter] to
+Disp "...
+Disp "(Enter to continue)
+Pause 
+ClrHome
+
+
+Disp "select, then 
+Disp "navigate with arrows;
+Disp "there's multiple pages of
+Disp "info. Use these values 
+Disp "to your advantage for 
+Disp "periodic trend questions.
+Disp "(Enter to continue)
+Pause 
+ClrHome

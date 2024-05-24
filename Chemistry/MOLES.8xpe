@@ -1,0 +1,187 @@
+//Program Structure:
+//A menu, at the main loop, gives you options what to do:
+//Change the molar mass, reset it, store it, load it, calculate things with it.
+//The calculate menu can yield gas volume from moles, moles from gas volume, mass from moles, moles from mass, 
+//substance volume from mass, mass from substance volume, substance volume from moles, moles from substance volume.
+
+//TODO: Substitute list names with better variable names?
+//TODO: Finish what's going on with adding and removing atoms
+//TODO: Have to figure out how to convert from symbol to number
+//TODO: May have to make another list with capital symbols
+
+&moles&N
+&molarmass&W
+&mass&M
+&LperMol&S
+&atomsym&Str1 //Index with blocks of 2
+&atomname&Str2 //Index with blocks of 14
+&temp&Str3
+
+&temperature&T
+&volume&V
+&pressure&P
+&R&R
+
+|addatom|AA
+|resetmolecule|RM
+
+|mainloop|T
+|PreMainLoop|T2
+|Measurement|MS
+|EnterMass|EM
+|EnterMoles|EN
+|EnterGasCalc|CG
+|EnterGas|EG
+|View|V
+|STP|ST
+|ATM|PA
+|Torr|PB
+|kPa|PC
+
+0 -> molarmass_
+0 -> LperMol_
+0 -> mass_
+0 -> moles_
+[1] -> l_ATOMS
+[0] -> l_ATOMI
+
+prgmCHEMINIT
+
+Lbl PreMainLoop
+    ClrHome
+    Disp "Your molecule currently:" 
+    " " -> temp_
+    For(I, 1, dim(l_ATOMI)) {.
+        // Iterate through all the atoms and their counts and print them all out in a string
+        l_ATOMS(I)
+        prgmZ1
+        If l_ATOMI(I)>0
+        temp_ + Ans + toString(l_ATOMI(I)) -> temp_
+    }
+    If Str3=" ":Then
+        Disp "(Empty)
+    Else
+        Disp sub(temp_,2,length(Str3)-1
+    End
+    Disp "And the molar mass is: "
+    0 -> molarmass_
+    For(I, 1, dim(l_ATOMI)) {.
+        molarmass_ +l_ATOMM(l_ATOMS(I)) * l_ATOMI(I) -> molarmass_
+    }
+    Disp round(molarmass_)
+    Disp "in g/mol"
+    Disp "(Enter to continue)
+    Pause
+
+Lbl mainloop
+Menu(;
+"What would you like to do?",;
+"Reset Molecule", resetmolecule,;
+"Add atom to molecule", addatom,;
+"Enter Measurement", Measurement,;
+"View Measurements", View,;
+"View Molecule", PreMainLoop;
+)
+
+
+Lbl addatom
+Input "Type atom symbol:   ", Str9
+Str9
+prgmZ2
+Ans->A
+Input "How many?   ", B
+0->C
+For(I,1,dim(l_ATOMS))
+    If l_ATOMS(I)= A
+    Then
+        l_ATOMI(I)+B->l_ATOMI(I)
+        1->C
+    End
+End
+
+If C=0:Then
+    dim(l_ATOMS)->X
+    X+1->dim(l_ATOMS)
+    X+1->dim(l_ATOMI)
+    B->l_ATOMI(X+1)
+    A->l_ATOMS(X+1)
+End
+Goto PreMainLoop
+
+Lbl Measurement
+    Menu(;
+    "Which measurement entering?",;
+    "Mass", EnterMass,;
+    "Moles", EnterMoles,;
+    "Gas Volume", EnterGas,;
+    "Cancel", mainloop
+    )
+
+Lbl EnterMass
+    ClrHome
+    Input "Mass?", mass_
+    mass_ / molarmass_ -> moles_
+    Goto View
+
+Lbl EnterMoles
+    ClrHome
+    Input "Moles?", moles_
+    moles_ * molarmass_ -> mass_
+    Goto View
+
+Lbl EnterGas
+    ClrHome
+    Input "Volume (L)?", volume_
+    Menu("P,R,T?",;
+    "Use Standard Temp Psr", STP,;
+    "Use P ATM value", ATM,;
+    "Use P Torr/mmHg value", Torr,;
+    "Use P Pascal value", kPa)
+Lbl EnterGasCalc
+    volume_ / LperMol_ -> moles_
+    moles_ * molarmass_ -> mass_
+    Goto View
+
+
+Lbl STP 
+    22.41 -> LperMol_
+    Goto EnterGasCalc
+
+Lbl ATM
+    0.0821 -> R
+    ClrHome
+    Input "Pressure in ATM?", pressure_)
+    Input "Temp? (C)", temperature_
+    temperature_ + 273.15 -> temperature_
+    RT/P -> LperMol_
+    Goto EnterGasCalc
+
+
+Lbl Torr
+    62.32 -> R
+    ClrHome
+    Input "Pressure in Torr/mmHg?", pressure_
+    Input "Temp? (C)", temperature_
+    temperature_ + 273.15 -> temperature_
+    RT/P -> LperMol_
+    Goto EnterGasCalc
+
+
+Lbl kPa
+    8.31 -> R
+    ClrHome
+    Input "Pressure in kPa?", pressure_
+    Input "Temp? (C)", temperature_
+    temperature_ + 273.15 -> temperature_
+    RT/P -> LperMol_
+    Goto EnterGasCalc
+
+Lbl View
+    ClrHome
+    Disp "You Have:"
+    Disp moles_
+    Disp "mol, and"
+    Disp mass_
+    Disp "g of substance"
+    Pause
+    Goto mainloop

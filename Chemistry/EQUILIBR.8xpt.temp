@@ -1,0 +1,55 @@
+Input "How many reactants? ",A
+Input "How many products? ",B
+Menu("Solve For","Reactant value",R,"Product value",P,"K or Q",K)
+
+Lbl R
+0→T
+A-1→A
+Goto B
+
+Lbl P
+1→T
+B-1→B
+Goto B
+
+Lbl K
+2→T
+Goto B
+
+Lbl B
+1→Q
+For(I,1,A)
+Input "Reactant "+toString(I)+"value?=",X
+Input "Coefficient?",Y
+Q/(X^Y)→Q
+End
+
+For(I,1,B)
+Input "Product "+toString(I)+"value?=",X
+Input "Coefficient?",Y
+Q*(X^Y)→Q
+End
+
+If not(T=2)
+Then
+Input "K value?=",K
+If T=0
+Then
+Input "Missing reactant coeff?=",Y
+(Q/K)^(1/Y)→N
+Disp "Reactant value=",N
+End
+If T=1
+Then
+Input "Missing product coeff?=",Y
+(K/Q)^(1/Y)→N
+Disp "Product value=",N
+End
+End
+
+If T=2
+Then
+Disp "Eql constant value=",Q
+End
+
+

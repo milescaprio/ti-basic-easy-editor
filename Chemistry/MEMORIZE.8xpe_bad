@@ -1,0 +1,88 @@
+ClrHome
+Disp "Strong Acids:HCl HBr HI
+Disp "HNO3 HClO4 H2SO4
+Disp "Strong Bases:LiOH NaOH KOH
+Disp "Ca(OH)2 Sr(OH)2 Ba(OH)2
+Disp "Things that dissolve:Group
+Disp "1A metals, NH4+, NO3-
+Disp "Eneg increase right and up
+Disp "all other trends follow
+Disp "eneg except atomic size
+Disp "which incr right and down
+
+Disp "(Press Enter to continue)
+Pause
+ClrHome
+Disp "Endothermic: delta H > 0
+Disp "Spontaneous: delta G < 0
+Disp "(dH < 0 and dS > 0)
+Disp "(or sometimes when one of
+Disp "them flipped, nonspotneous
+Disp "when both flipped)
+Pause 
+ClrHome
+
+Disp "chromotagraphy:
+Disp "cohesive across same atoms
+Disp "adhesive across different
+Disp "paper is polar
+Disp "rate up increases with
+Disp "less polar mobile phase
+Pause 
+ClrHome
+
+Disp "LDF increase with mass 
+Disp "Dipole Dipole increase w
+Disp "polarity, H bonding incr
+Disp "with count and polarity
+Disp "Hydrogen Bonding: HF HO HN
+Disp "anode/ion//ion/cathode
+Disp "an ox red cat, e=ecat-ean
+Disp "Half reaction proceeds if
+Disp "E > 0
+Pause 
+ClrHome
+
+//Galvanic: Spontaneous, Electrolytic: Nonspontaneous
+
+Disp "Oxidation Number Rules
+Disp "Al=+3,O=-2 except as O2 or
+Disp "H2O2 (then -1),H=+1 except
+Disp "LiH NaH CaH2 (then -1)
+Disp "F=-1 except for F2 and HOF
+Disp "(then 0, +1 respectively)
+Disp "Sum numbers = ion charge
+Pause
+ClrHome
+
+
+//To Add to updated calculator program:
+MnO4-, S
+
+//questions.add(Question.MCQ("Ammonium"      ,  "NH4+1"       ,  ["NH4-1"], answer_count=2             ))
+//questions.add(Question.MCQ("Hydronium"     ,  "H3O+1"       ,  ["H3O-1", "OH-1", "OH+1"]             ))
+//questions.add(Question.MCQ("Hydroxide"     ,  "OH-1"        ,  ["OH+1", "H3O+1", "H3O-1"]            ))
+//questions.add(Question.MCQ("Nitrate"       ,  "NO3-1"       ,  ["NO3+1", "NO3-2", "NO3+2"]           ))
+//questions.add(Question.MCQ("Nitrite"       ,  "NO2-1"       ,  ["NO2+1", "NO2-2", "NO2+2"]           ))
+//questions.add(Question.MCQ("Sulfate"       ,  "SO4-2"       ,  ["SO4+1", "SO4-1", "SO4+2"]           ))
+//questions.add(Question.MCQ("Sulfite"       ,  "SO3-2"       ,  ["SO3+1", "SO3-1", "SO3+2"]           ))
+//questions.add(Question.MCQ("Phosphate"     ,  "PO4-3"       ,  ["PO4+1", "PO4-1", "PO4+2"]           ))
+//questions.add(Question.MCQ("Phosphite"     ,  "PO3-3"       ,  ["PO3+1", "PO3-1", "PO3+2"]           ))
+//questions.add(Question.MCQ("Carbonate"     ,  "CO3-2"       ,  ["CO3+1", "CO3-1", "CO3+2"]           ))
+//questions.add(Question.MCQ("BiCarbonate"   ,  "HCO3-1"      ,  ["HCO3+1", "HCO3-2", "HCO3+2"]        ))
+//questions.add(Question.MCQ("Cyanide"       ,  "CN-1"        ,  ["CN+1", "CN-2", "CN+2"]              ))
+//questions.add(Question.MCQ("Permanganate"  ,  "MnO4-1"      ,  ["MnO4+1", "MnO4-2", "MnO4+2"]        ))
+//questions.add(Question.MCQ("Acetate"       ,  "C2H3O2-1"    ,  ["C2H3O2+1", "C2H3O2-2", "C2H3O2+2"]  ))
+//questions.add(Question.MCQ("Peroxide"      ,  "O2-2"        ,  ["O2+1", "O2-1", "O2+2"]              ))
+
+//B and Be often don't obey the octet rule
+
+//Precipitate: Non-soluble
+
+//C2H3O2-1 add to solubility rules
+
+//Net Ionic Equation: Split all aqueous ions and cancel spectators
+
+//For an ICE table: If Starting molarity is greater than 10^3 times Ka or Kb, then:
+//x approx Sqrt(Ka or Kb * Starting Molarity)
+//pH approx -log(sqrt(Ka or Kb * Starting Molarity)) = -0.5 * log(Ka or Kb * Starting Molarity)

@@ -1,0 +1,286 @@
+//Program Structure:
+//Top Menu call for what to do:
+//-add energy right side
+//-add energy left side
+//-for each, value or energy
+//-convert
+//-change gravity accel
+
+//energy types: grav pot, kinetic, ang kinetic, elastic pot, large grav pot
+//each handled there, but remove and add just have a parity change
+
+
+
+&energy&E
+&sqr&C
+&coeff1&A
+&coeff2&B
+&coeff3&D
+&grav&G
+&parity&M
+&Grav&H
+
+
+|Home|HM
+|Change|CG
+|Quit|Q
+
+|KinAdd|KA
+|KinGetMass|KM
+|KinGetVel|KV
+
+|AngKinAdd|AA
+|AngKinGetI|AI
+|AngKinGetW|AW
+
+|GrvAdd|GA
+|GrvGetMass|GM
+|GrvGetHeight|GH
+|GrvGetAccel|GG
+
+|LrgGrvAdd|LA
+|LrgGetMass|LM
+|LrgGetRad|LR
+
+|ElasticAdd|EA
+|ElasticGetSpring|ES
+|ElasticGetDisp|ED
+
+|AddVal|AV
+|AddNrg|AE
+|Val|V
+
+|RemoveNrg|RE
+|RemoveVal|RV
+|Nrg|E
+
+|Conv|CV
+|KinConv|KC
+|AngKinConv|AC
+|GrvConv|GC
+|LrgGrvConv|LC
+|ElasticConv|EC
+
+//Initialize varaibles, start program
+
+10->grav_
+6.6743 * 10 ^ _-11 -> Grav_
+
+0->energy_ /*Energy Total*/
+1->parity_ /*Multiplier for adding/removing*/
+0->coeff1_ /*First variable in equation*/
+0->coeff2_ /*Second variable in equation*/
+0->coeff3_ /*Extra var*/
+0->sqr_ /*Third variable in equation*/
+
+//1/2mv^2
+//1/2kx^2
+//1/2Iw^2
+//mgh
+//-GM/R
+
+ClrHome
+Disp "Welcome to Energy!"
+Disp "Add values to the left"
+Disp "(initial) and the right"
+Disp "(final) and then convert"
+Disp "Remaining energy into an"
+Disp "Unknown. g is by default"
+Disp "10 m/s^2."
+Disp "Press Enter to continue."
+Pause 
+
+
+//Home
+Lbl Home
+    Disp "You have " 
+    Disp round(energy_)
+    Disp " NRG on initial side"
+    Pause 
+    Menu("Energy:" ;,
+        "Add Initial Energy", AddNrg, ;
+        "Add Initial NRG Value", AddVal, ;
+        "Add Final Energy", RemoveNrg, ;
+        "Add Final NRG Value", RemoveVal, ;
+        "Convert Remaining Final", Conv, ;
+        "Change Gravity Accel", Change,;
+        "Done", Quit)
+
+//New grav accel
+Lbl Change
+    ClrHome
+    Disp "Current Grav Accel:"
+    Disp grav_
+    Input "New Grav Accel: ", grav_
+Goto Home
+
+Lbl RemoveNrg
+    _-1->parity_
+Goto Nrg             
+                     
+Lbl AddNrg           
+    1->parity_       
+Goto Nrg         
+                 
+Lbl Nrg          
+
+//Input Redirect For Adding/Removing Energy
+Menu(;
+    "What type of Energy", ;
+    "Kinetic NRG", KinAdd, ;
+    "Grav Pot NRG", GrvAdd, ;
+    "Elastic Pot NRG", ElasticAdd, ;
+    "Large Grav Pot NRG", LrgGrvAdd, ;
+    "Angular Kinetic NRG", AngKinAdd, ;
+    "Cancel", Home)
+
+Lbl KinAdd
+    ClrHome
+    Input "Mass? ", coeff1_
+    Input "Velocity? ", sqr_
+    energy_ + 1/2 * coeff1_ * sqr_ * sqr_ * parity_ -> energy_
+Goto Home
+
+Lbl ElasticAdd
+    ClrHome
+    Input "Spring Constant? ", coeff1_
+    Input "Displacement? ", sqr_
+    energy_ + 1/2 * coeff1_ * sqr_ * sqr_ * parity_-> energy_
+Goto Home
+
+Lbl GrvAdd
+    ClrHome
+    Input "Mass? ", coeff1_
+    Input "Height? ", coeff2_
+    energy_ + coeff2_ * coeff1_ * grav_ * parity_ -> energy_
+Goto Home
+
+Lbl LrgGrvAdd
+    ClrHome
+    Input "Attractor Mass", coeff1_
+    Input "Object Mass", coeff3_
+    Input "Radius", coeff2_
+    energy_ - Grav_ * coeff1_ * coeff3_ / coeff2_ * parity_-> energy_
+Goto Home
+
+Lbl AngKinAdd
+    ClrHome
+    Input "Moment of Inertia", coeff1_
+    Input "Angular Velocity", sqr_
+    energy_ + 1/2 * coeff1_ * sqr_ * sqr_ * parity_ -> energy_
+Goto Home
+
+Lbl AddVal
+    1 -> parity_
+Goto Val
+
+Lbl RemoveVal
+    _-1 -> parity_
+Goto Val
+
+Lbl Val
+    Input "Energy amount?", coeff1_
+    energy_ + coeff1_ * parity_ -> energy_
+Goto Home
+
+Lbl Conv
+    Menu(;
+    "Which energy type?", ;
+    "Kinetic", KinConv, ;
+    "Elastic Potential", ElasticConv, ;
+    "Gravitational Potential", GrvConv, ;
+    "Cancel", Home)
+
+Lbl KinConv
+    Menu(;
+        "What variable do you want?", ;
+        "Mass", KinGetMass, ;
+        "Velocity", KinGetVel, ;
+        "Cancel", Conv)
+
+Lbl ElasticConv
+    Menu("What variable do you want?", ;
+        "Spring Constant", ElasticGetSpring, ;
+        "Displacement", ElasticGetDisp, ;
+        "Cancel", Conv)
+
+Lbl GrvConv
+    Menu("What variable do you want?", ;
+        "Height", GrvGetHeight, ;
+        "Mass", GrvGetMass, ;
+        "Grav Acceleration", GrvGetAccel, ;
+        "Cancel", Conv)
+
+Lbl LrgGrvConv
+    Menu("What variable do you want?, ;
+    "Radius", LrgGetRad, ;
+    "Large Mass", LrgGetMass, ;
+    "Cancel, Conv)
+
+Lbl KinGetMass
+    Input "Velocity? ", sqr_
+    Disp "Mass:"
+    Disp energy_ / (1/2 * sqr_ * sqr_)
+    Pause 
+Goto Home
+
+Lbl KinGetVel
+    Input "Mass? ", coeff1_
+    Disp "Velocity:
+    Disp (energy_ / (1/2 * coeff1_)) ^ (1/2)
+    Pause 
+Goto Home
+
+Lbl AngKinGetI
+    Input "Ang Velocity? ", sqr_
+    Disp "Moment of Inertia:"
+    Disp energy_ / (1/2 * sqr_ * sqr_)
+    Pause 
+Goto Home
+
+Lbl AngKinGetW
+    Input "Moment Of Intertia? ", coeff1_
+    Disp "Ang Velocity:
+    Disp (energy_ / (1/2 * coeff1_)) ^ (1/2)
+    Pause 
+Goto Home
+
+Lbl ElasticGetSpring
+    Input "Displacement? ", sqr_
+    Disp "Spring Constant:
+    Disp energy_ / (1/2 * sqr_ * sqr_)
+    Pause 
+Goto Home
+
+Lbl ElasticGetDisp
+    Input "Spring Constant:", coeff1_
+    Disp "Displacement:
+    Disp (energy_ / (1/2 * coeff1_)) ^ (1/2)
+    Pause 
+Goto Home
+
+Lbl GrvGetHeight
+    Input "Mass:", coeff1_
+    Disp "Height:"
+    Disp (energy_ / (coeff1_ * grav_))
+    Pause 
+Goto Home
+
+
+Lbl GrvGetMass
+    Input "Mass:", coeff2_
+    Disp "Height:"
+    Disp (energy_ / (coeff2_ * grav_)) 
+    Pause
+Goto Home
+
+Lbl GrvGetAccel
+    Input "Mass:", coeff2_
+    Disp "Height:"
+    Disp (energy_ / (coeff1_ * coeff2_)) 
+    Pause
+Goto Home
+
+Lbl LrgGet
+
+Lbl Quit

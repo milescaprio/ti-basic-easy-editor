@@ -1,0 +1,7 @@
+&atomname&Str2 //Index with blocks of 14
+
+Ans->A
+
+sub(atomname_, (A - 1) * 14 + 1, 14)
+
+//TODO: Test
